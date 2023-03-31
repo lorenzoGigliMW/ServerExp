@@ -21,17 +21,17 @@ const PORT = 3005;
 app.use(cors({
     origin: '*'
 }));
+
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 app.get('/', (request, response) => response.send('Hello from www.mischianti.org!'));
 app.get('/api/todos', (request, response) => {
     response.setHeader('content-type', 'application/json');
     response.status(200).json(todos);
 });
 
-
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 app.post('/api/todo/edit/:id', cors(corsOptions), (req, res) => {
 
@@ -50,6 +50,27 @@ app.post('/api/todo/edit/:id', cors(corsOptions), (req, res) => {
 
     res.sendStatus(200);
 });
+
+
+
+app.post('/api/todo/toggle/:id', cors(corsOptions), (req, res) => {
+
+    const id = req.params['id'];
+    console.log('Got body:', req.body);
+    // console.log('Got body:', req);
+    //[...todos][req.body.id].name=req.body.name
+    //[...todos][0].name=req.body.name
+
+    index = todos.findIndex(p => p.id == id);
+    console.log(index)
+    //index=todos.findIndex(myFunction)
+    //console.log(index)
+    todos[index].completed = req.body.completed
+    //todos.filter((elem) => (elem.id === req.body.id))[index].name = req.body.name
+
+    res.sendStatus(200);
+});
+
 
 app.post('/api/todos', cors(corsOptions), (req, res) => {
 
