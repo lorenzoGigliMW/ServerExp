@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 var cors = require('cors')
 
 var todos = [
-    // { id: "todo-0", name: "Eat", completed: true },
-    // { id: "todo-1", name: "Sleep", completed: false },
-    // { id: "todo-2", name: "Repeat", completed: false }
+    { id: "todo-0", name: "Eat", completed: true },
+    { id: "todo-1", name: "Sleep", completed: false },
+    { id: "todo-2", name: "Repeat", completed: false }
 ]
 
 const app = express();
@@ -30,6 +30,15 @@ app.get('/', (request, response) => response.send('Hello from www.mischianti.org
 app.get('/api/todos', (request, response) => {
     response.setHeader('content-type', 'application/json');
     response.status(200).json(todos);
+});
+app.get('/api/fetch', (request, response) => {
+    response.send('fetch');
+});
+app.get('/api/fulfilled', (request, response) => {
+    response.send('fulfilled'); 
+});
+app.get('/api/rejected', (request, response) => {
+    response.setHeader.send('rejected');
 });
 
 
