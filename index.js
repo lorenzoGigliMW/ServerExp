@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 var cors = require('cors')
 
 var todos = [
-    // { id: "todo-0", name: "Eat", completed: true },
-    // { id: "todo-1", name: "Sleep", completed: false },
-    // { id: "todo-2", name: "Repeat", completed: false }
+    { id: "todo-0", name: "Eat", completed: true },
+    { id: "todo-1", name: "Sleep", completed: false },
+    { id: "todo-2", name: "Repeat", completed: false }
 ]
 
 const app = express();
@@ -30,6 +30,7 @@ app.get('/', (request, response) => response.send('Hello from www.mischianti.org
 app.get('/api/todos', (request, response) => {
     response.setHeader('content-type', 'application/json');
     response.status(200).json(todos);
+    // response.status(400).json(todos);
 });
 
 
@@ -95,7 +96,7 @@ app.post('/api/todo/add', cors(corsOptions), (req, res) => {
     //todos.data.push(newTodo)
     console.log('Got body:', req.body);
     res.sendStatus(200);
-    // const taskList=req.params    
+    // const taskList=req.params
     // taskList= [...taskList,newTodo]
 
 })
