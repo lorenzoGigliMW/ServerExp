@@ -30,6 +30,7 @@ app.get('/', (request, response) => response.send('Hello from www.mischianti.org
 app.get('/api/todos', (request, response) => {
     response.setHeader('content-type', 'application/json');
     response.status(200).json(todos);
+    // response.status(400).json(todos);
 });
 app.get('/api/fetch', (request, response) => {
     response.send('fetch');
@@ -104,7 +105,7 @@ app.post('/api/todo/add', cors(corsOptions), (req, res) => {
     //todos.data.push(newTodo)
     console.log('Got body:', req.body);
     res.sendStatus(200);
-    // const taskList=req.params    
+    // const taskList=req.params
     // taskList= [...taskList,newTodo]
 
 })
